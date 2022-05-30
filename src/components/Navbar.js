@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSeedling, faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
@@ -15,7 +15,7 @@ function Navbar() {
     setClick(!click);
   };
 
-  const handleMobileMenu = () => {
+  const closeMobileMenu = () => {
     setClick(false);
   };
   const showButton = () => {
@@ -26,6 +26,10 @@ function Navbar() {
     }
   };
 
+  useEffect(() => {
+    showButton();
+  }, []);
+
   window.addEventListener("resize", showButton);
 
   return (
@@ -33,7 +37,7 @@ function Navbar() {
       <nav className="navbar">
         <div className="navbar-container">
           <Link to="/" className="navbar-logo">
-            TRVL <FontAwesomeIcon icon={faSeedling} />
+            TRVL <FontAwesomeIcon icon={faSeedling} onClick={closeMobileMenu} />
           </Link>
           <div className="menu-icon" onClick={handclickMenu}>
             <FontAwesomeIcon icon={click ? faTimes : faBars} />
@@ -41,7 +45,7 @@ function Navbar() {
 
           <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li className="nav-item">
-              <Link to="/" className="nav-links" onClick={handleMobileMenu}>
+              <Link to="/" className="nav-links" onClick={closeMobileMenu}>
                 Home
               </Link>
             </li>
@@ -49,7 +53,7 @@ function Navbar() {
               <Link
                 to="/service"
                 className="nav-links"
-                onClick={handleMobileMenu}
+                onClick={closeMobileMenu}
               >
                 Service
               </Link>
@@ -58,7 +62,7 @@ function Navbar() {
               <Link
                 to="/products"
                 className="nav-links"
-                onClick={handleMobileMenu}
+                onClick={closeMobileMenu}
               >
                 Products
               </Link>
@@ -67,7 +71,7 @@ function Navbar() {
               <Link
                 to="/sign-up"
                 className="nav-links"
-                onClick={handleMobileMenu}
+                onClick={closeMobileMenu}
               >
                 Sign Up
               </Link>

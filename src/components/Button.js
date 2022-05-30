@@ -1,4 +1,3 @@
-import { type } from "@testing-library/user-event/dist/type";
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Button.css";
@@ -7,7 +6,13 @@ const STYLES = ["btn--primary", "btn--outline"];
 
 const SIZES = ["btn--medium", "btn--large"];
 
-export const Button = ({ children, onClick, buttonStyle, buttonSize }) => {
+export const Button = ({
+  children,
+  onClick,
+  type,
+  buttonStyle,
+  buttonSize,
+}) => {
   const checkButtonStyle = STYLES.includes(buttonStyle)
     ? buttonStyle
     : STYLES[0];
